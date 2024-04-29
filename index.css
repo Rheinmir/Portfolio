@@ -20,7 +20,7 @@ body{
     font-family: "Poppins", san-serif;
     background-color: beige;
     color: black;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .home_section{
@@ -130,4 +130,141 @@ nav {
 .about_text{
     font-size: 1.5vw;
     width: 95%;
+}
+.skills{
+    z-index: 1;
+    padding: 0 2.5%;
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 2.2vw;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3vw;
+    overflow: hidden;
+}
+
+.projects_section{
+    font-family: "Anton", sans-serif;
+    width: 100vw;
+    height: 100vh;
+    padding: 5vh 2vw;
+}
+
+.project_title{
+    font-size: 4vw;
+    text-transform: uppercase;
+}
+
+.projects_container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 35vw 1fr;
+    grid-gap: 1vw;
+}
+
+.sub_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1vw;
+}
+
+.project{
+    position: relative;
+    padding: 1vw;
+}
+
+.projects_container span{
+    font-family: "Poppins", sans-serif;
+    z-index: 2;
+    font-size: 5vw;
+    position: absolute;
+    bottom: 0;
+}
+
+.project img{
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+}
+
+.contact_section{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.contact_section span{
+    position: absolute;
+    cursor: pointer;
+}
+
+.contact_section span:nth-child(1){
+    top: 20%;
+    left: 15%;
+}
+
+.contact_section span:nth-child(2){
+    top: 20%;
+    right: 15%;
+}
+
+.contact_section span:nth-child(3){
+    top: 75%;
+    left: 15%;
+}
+
+.contact_section span:nth-child(4){
+    top: 75%;
+    right: 15%;
+}
+
+.contact_section span:nth-child(5){
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    border: 1px solid white;
+    padding: 1vw 1.5vw;
+    border-radius: 20px;
+}
+
+.contact_section span:nth-child(5):hover{
+    background-color: white;
+    color: black;
+}
+
+.footer{
+    width: 100vw;
+    height: 40vh;
+    padding: 0 10vw;
+    display: grid;
+    grid-template-columns: 10vw 10vw 5vw 5vw;
+    gap: 12.5vw;
+    align-items: center;
+    font-size: 1vw;
+}
+
+.footer_title{
+    font-size: 5vw;
+    font-family: "Anton", sans-serif;
+    line-height: 1;
+}
+
+.footer div{
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}
+
+.footer div span{
+    cursor: pointer;
+}
+
+.footer div span:hover{
+    text-decoration: underline;
 }
