@@ -96,25 +96,6 @@ nav {
     background-color: white;
     color: black;
 }
-/* nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.nav_contact_link {
-    height: 5vh;
-    padding: 0.75ch 1.5vw;
-    border: 1px solid white;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3 ease;
-}
-.nav_contact_link:hover{
-    background-color: black;
-    color: beige;
-} */
-
 .sub_hero_text {
     display: flex;
     justify-content: flex-end;
