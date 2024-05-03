@@ -45,11 +45,23 @@ nav {
     cursor: pointer;
     transition: 0.3 ease;
 }
-
 .nav_contact_link:hover {
     background-color: white;
     color: black;
 }
+.nav_contact_link {
+    height: 5vh;
+    padding: 0.75ch 1.5vw;
+    border: 1px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3 ease;
+}
+
+.nav_project1_link:hover {
+    color: yellow;
+}
+
 .sub_hero_text {
     display: flex;
     justify-content: flex-end;
