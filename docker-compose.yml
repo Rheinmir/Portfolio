@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "2080:80"
     volumes:
-      - ./src:/usr/share/nginx/html
+      - ./public:/usr/share/nginx/html
     networks:
       - portfolio-network
 
