@@ -15,12 +15,12 @@ pipeline {
         stage('Build & Deploy') {
             steps {
                 sh """
-                docker stop portfolio || true
-                docker rm portfolio || true
+                docker stop portfolio-docker || true
+                docker rm portfolio-docker || true
                 docker rmi portfolio-app || true
 
                 docker build -t portfolio-app .
-                docker run -d --name portfolio -p 8080:80 portfolio-app
+                docker run -d --name portfolio-docker -p 8080:80 portfolio-app
                 """
             }
         }
