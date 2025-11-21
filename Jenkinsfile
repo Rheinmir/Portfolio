@@ -11,14 +11,12 @@ pipeline {
                 sh 'git status'
             }
         }
-
         stage('Build & Deploy') {
             steps {
                 sh """
                 docker stop portfolio-docker || true
                 docker rm portfolio-docker || true
                 docker rmi portfolio-app || true
-
                 docker build -t portfolio-app .
                 docker run -d --name portfolio-docker -p 8080:80 portfolio-app
                 """
@@ -30,7 +28,7 @@ pipeline {
 //   --name agent-docker \
 //   --restart unless-stopped \
 //   -v /var/run/docker.sock:/var/run/docker.sock \
-//   -v agent_home:/home/jenkins \
+//   -v agent_home:/home/jenkins/agent \
 //   jenkins/inbound-agent \
 //   -url http://host.docker.internal:8080 \
 //   -workDir /home/jenkins \
