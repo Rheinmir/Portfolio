@@ -43,7 +43,6 @@ nav {
     cursor: pointer;
     color: white;
     transition: 0.3 ease;
-    background: white;
 }
 .nav_contact_link:hover, a.nav_contact_link:hover {
     background-color: pink;
