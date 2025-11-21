@@ -18,7 +18,7 @@ pipeline {
                 docker rm portfolio-docker || true
                 docker rmi portfolio-app || true
                 docker build -t portfolio-app .
-                docker run -d --name portfolio-docker -p 8080:80 portfolio-app
+                docker run -d --name portfolio-docker -p 1050:80 portfolio-app
                 """
             }
         }
