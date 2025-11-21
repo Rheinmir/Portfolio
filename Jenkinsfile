@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker linux' }
+    agent { label 'docker' }
 
     triggers {
         githubPush()
@@ -26,7 +26,6 @@ pipeline {
         }
     }
 }
-
 // docker run -d \
 //   --name agent-docker \
 //   --restart unless-stopped \
