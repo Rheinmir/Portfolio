@@ -265,4 +265,5 @@ nav {
 }
 .nolink:hover {
   opacity: 0.8; /* hiệu ứng nếu muốn */
+  color: yellow;
 }
