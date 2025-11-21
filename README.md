@@ -1,6 +1,6 @@
 # Portfolio Docker Project
 
-This project is a Dockerized static portfolio application. It showcases a personal portfolio using HTML, CSS, and JavaScript, and is served using Nginx.
+THIS PROJECT is a Dockerized static portfolio application. It showcases a personal portfolio using HTML, CSS, and JavaScript, and is served using Nginx.
 
 ## Project Structure
 
