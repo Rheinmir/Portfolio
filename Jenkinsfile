@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker' }
+    agent { label 'docker linux' }
 
     triggers {
         githubPush()
@@ -26,5 +26,17 @@ pipeline {
         }
     }
 }
+
+// docker run -d \
+//   --name agent-docker \
+//   --restart unless-stopped \
+//   -v /var/run/docker.sock:/var/run/docker.sock \
+//   -v agent_home:/home/jenkins \
+//   jenkins/inbound-agent \
+//   -url http://host.docker.internal:8080 \
+//   -workDir /home/jenkins \
+//   e8ed4c6783e917dfed02bbe4a4ce3f194ad89c0709704863d6ef4351b8581742 \
+//   agent-docker
+
 
 
