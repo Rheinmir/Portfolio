@@ -47,6 +47,7 @@ nav {
 .nav_contact_link:hover, a.nav_contact_link:hover {
     background-color: pink;
     color: black;
+    border: 1px solid black;
 }
 
 
