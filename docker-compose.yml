@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "2080:80"
+      - "1050:80"
     volumes:
       - ./public:/usr/share/nginx/html
     networks:

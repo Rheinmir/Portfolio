@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'docker' }
+    agent { label 'dockerlinux' }
 
     triggers {
         githubPush()
@@ -14,11 +14,11 @@ pipeline {
         stage('Build & Deploy') {
             steps {
                 sh """
-                docker stop portfolio-docker || true
-                docker rm portfolio-docker || true
-                docker rmi portfolio-app || true
-                docker build -t portfolio-app .
-                docker run -d --name portfolio-docker -p 8080:80 portfolio-app
+                docker stop portfolio || true
+                docker rm portfolio || true
+                docker rmi portfolio || true
+                docker build -t portfolio .
+                docker run -d --name portfolio -p 1050:80 portfolio
                 """
             }
         }
