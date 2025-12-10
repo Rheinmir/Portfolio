@@ -8,7 +8,7 @@ services:
     ports:
       - "1050:80"
     volumes:
-      - ./public:/usr/share/nginx/html
+      - ./src:/usr/share/nginx/html
     networks:
       - portfolio-network
 

@@ -266,3 +266,128 @@ nav {
 .nolink:hover {
   color: yellow
 }
+/* Certification Section */
+.certificates_section {
+    font-family: "Anton", sans-serif;
+    width: 100vw;
+    height: auto;
+    min-height: 50vh; /* Reduced min-height */
+    padding: 10vh 2vw; /* Use consistent padding */
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+}
+
+.cert_list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2vh;
+    border-top: 1px solid #333; /* Top border for the list */
+}
+
+.cert_item {
+    display: grid;
+    /* Grid layout: Year | Name | Issuer | Arrow */
+    grid-template-columns: 1fr 3fr 2fr 0.5fr; 
+    align-items: center;
+    padding: 3vh 0; /* Align with title (remove side padding) */
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: white; /* Default color */
+}
+
+/* Hover Effect: High Energy */
+.cert_item:hover {
+    background-color: white;
+    color: black;
+    padding-left: 1vw; /* Add indent on hover only */
+}
+
+.cert_item:hover .cert_issuer {
+    color: #444; /* Darker grey on hover */
+}
+
+.cert_year {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2vw;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.cert_name {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.5vw; /* Reduced from 2vw */
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.cert_issuer {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2vw;
+    font-weight: 400;
+    text-align: right; /* Align right to separate from name */
+    padding-right: 2vw;
+    opacity: 0.7;
+}
+
+.cert_arrow {
+    font-family: "Poppins", sans-serif;
+    font-size: 2vw;
+    text-align: right;
+    transition: transform 0.3s ease;
+}
+
+.cert_item:hover .cert_arrow {
+    transform: translateX(5px) translateY(-5px); /* Move diagonally */
+}
+
+
+/* Responsive Rules */
+/* Tablet */
+@media (max-width: 1024px) {
+    .cert_item {
+        grid-template-columns: 1fr 3fr 1fr; /* Hide arrow column space slightly or adjust */
+    }
+    .cert_name {
+        font-size: 3vw;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .certificates_section {
+        padding: 5vh 5vw;
+    }
+    .cert_item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1vh;
+        padding: 3vh 0;
+    }
+    
+    .cert_item:hover {
+        padding-left: 1vw;
+    }
+
+    .cert_year {
+        font-size: 3vw;
+        margin-bottom: 0.5vh;
+    }
+    .cert_name {
+        font-size: 5vw;
+        line-height: 1.2;
+    }
+    .cert_issuer {
+        font-size: 3.5vw;
+        text-align: left;
+        padding-right: 0;
+        margin-top: 1vh;
+    }
+    .cert_arrow {
+        display: none; /* Hide arrow on mobile for cleaner look */
+    }
+}
+
