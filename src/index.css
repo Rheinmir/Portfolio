@@ -357,9 +357,35 @@ nav {
 
 /* Mobile */
 @media (max-width: 768px) {
+    /* Standardize Section Padding */
+    .home_section,
+    .projects_section,
     .certificates_section {
-        padding: 5vh 5vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
     }
+
+    .certificates_section,
+    .projects_section {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+
+    /* About Section Alignment */
+    .about_span {
+        margin-left: 5vw;
+    }
+    
+    .about_topics, 
+    .about_text {
+        width: 90%; /* Center with 5% margins (matches 5vw) */
+    }
+
+    .skills {
+        padding: 0 5vw; /* Consistent alignment */
+    }
+
+    /* Certifications Item Layout */
     .cert_item {
         display: flex;
         flex-direction: column;
@@ -369,7 +395,7 @@ nav {
     }
     
     .cert_item:hover {
-        padding-left: 1vw;
+        padding-left: 2vw; /* Slightly more indentation on hover for mobile */
     }
 
     .cert_year {
@@ -387,7 +413,7 @@ nav {
         margin-top: 1vh;
     }
     .cert_arrow {
-        display: none; /* Hide arrow on mobile for cleaner look */
+        display: none; 
     }
 }
 
