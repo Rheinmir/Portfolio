@@ -553,16 +553,17 @@ nav {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 10000; /* Sit on top of everything */
+    z-index: 20000 !important; /* Force top layer */
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.95); /* Black w/ opacity */
+    width: 100vw; /* Use vw to be sure */
+    height: 100vh; /* Use vh to be sure */
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.95);
     justify-content: center;
     align-items: center;
-    /* Removed animation for reliability */
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Modal Content (Image) */
@@ -570,10 +571,11 @@ nav {
     margin: auto;
     display: block;
     max-width: 90%;
-    max-height: 80vh; /* changed to vh to prevent overflow */
+    max-height: 80vh; 
     object-fit: contain;
     border: 2px solid white;
     border-radius: 4px;
+    z-index: 20001; /* Above backgound */
 }
 
 /* The Close Button */
