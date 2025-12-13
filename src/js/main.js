@@ -18,13 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentIndex = index;
         const img = zoomableImages[currentIndex];
         
-        modalImg.style.animation = 'none'; // Reset animation
-        modalImg.offsetHeight; // Trigger reflow
-        modalImg.style.animation = 'zoomIn 0.3s'; // Re-apply animation
-        
         modalImg.src = img.src;
-        
-        // Optional: Update caption or counter if you add one later
     };
 
     // Open modal when an image is clicked
@@ -32,21 +26,20 @@ document.addEventListener('DOMContentLoaded', () => {
         img.addEventListener('click', (e) => {
             // e.preventDefault();
             modal.style.display = 'flex';
-            modalImg.src = img.src;
-            modalImg.classList.add('modal-content');
-            currentIndex = index;
             document.body.style.overflow = 'hidden'; 
+            
+            showImage(index); // Use the function to show the image
         });
     });
 
     // Navigation Buttons
     prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent modal closing
+        e.stopPropagation(); 
         showImage(currentIndex - 1);
     });
 
     nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent modal closing
+        e.stopPropagation();
         showImage(currentIndex + 1);
     });
 
