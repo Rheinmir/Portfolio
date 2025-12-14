@@ -156,86 +156,24 @@ nav {
 }
 
 
-.cheatsheets_wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    padding: 0 4vw; /* Space for arrows */
-}
 
-.cheatsheets_track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+.cheatsheets_container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
     width: 100%;
-    cursor: grab;
-}
-
-.cheatsheets_track:active {
-    cursor: grabbing;
 }
 
 .cheatsheet_item {
     position: relative;
-    display: flex; /* Fix flex shrink issue */
-    flex: 0 0 33.333%; /* 3 items per row default */
-    height: 40vh;
-    padding: 0 1vw; /* Gaps between items */
-    overflow: hidden; /* Changed from hidden to visible inside padding context if needed, but keeping container behavior */
-    box-sizing: border-box; /* Include padding in width */
-    background-color: transparent; /* Remove background from container, move to inner if needed */
-}
-
-
-
-.cheatsheets_track {
-    display: flex;
-    gap: 2vw; /* Use modern gap */
-    transition: transform 0.5s ease-in-out;
-}
-
-.cheatsheet_item {
-    position: relative;
-    flex: 0 0 calc((100% - 4vw) / 3); /* 3 items, 2 gaps */
-    height: 40vh;
+    width: 100%;
+    /* Keep the improved contain/height look */
+    height: 40vh; 
     overflow: hidden;
     border: 1px solid #333;
     transition: all 0.3s ease;
     background-color: #000;
 }
-
-.cheat_nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    font-size: 2rem;
-    padding: 1rem;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.3s;
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cheat_nav:hover {
-    background-color: white;
-    color: black;
-}
-
-.cheat_prev {
-    left: 0;
-}
-
-.cheat_next {
-    right: 0;
-}
-
 
 .cheatsheet_item:hover {
     border-color: white;
@@ -246,7 +184,7 @@ nav {
 .cheatsheet_item img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* CRITICAL: Ensures image fits within the box */
+    object-fit: contain;
     transition: transform 0.5s ease, filter 0.3s ease;
     filter: brightness(0.8);
 }
@@ -608,17 +546,35 @@ nav {
     transform: translateX(5px) translateY(-5px);
 }
 
-/* Responsive */
+/* Responsive Cheatsheets */
 @media (max-width: 1024px) {
-    .work_item {
-        grid-template-columns: 1fr 3fr 1fr;
+    .cheatsheets_container {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .work_role {
-        font-size: 3vw;
+    .cheatsheet_item span {
+        font-size: 2vw;
     }
 }
 
 @media (max-width: 768px) {
+    .cheatsheets_section {
+        padding-left: 5vw;
+        padding-right: 5vw;
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+    .cheatsheets_container {
+        grid-template-columns: 1fr;
+        gap: 3vh;
+    }
+    .cheatsheet_item {
+        aspect-ratio: 3/2;
+        height: auto;
+    }
+    .cheatsheet_item span {
+        font-size: 4vw;
+        padding: 2vh;
+    }
     .work_section {
         padding-left: 5vw;
         padding-right: 5vw;
