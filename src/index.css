@@ -137,8 +137,7 @@ nav {
 .projects_section{
     font-family: "Anton", sans-serif;
     width: 100vw;
-    height: auto;
-    min-height: 100vh;
+    height: 100vh;
     padding: 5vh 2vw;
 }
 
