@@ -155,22 +155,87 @@ nav {
     gap: 5vh;
 }
 
-.cheatsheets_container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2vw;
+
+.cheatsheets_wrapper {
+    position: relative;
     width: 100%;
+    overflow: hidden;
+    padding: 0 4vw; /* Space for arrows */
+}
+
+.cheatsheets_track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+    cursor: grab;
+}
+
+.cheatsheets_track:active {
+    cursor: grabbing;
 }
 
 .cheatsheet_item {
     position: relative;
-    width: 100%;
-    height: 40vh; /* Slightly reduced height to fit better */
+    display: flex; /* Fix flex shrink issue */
+    flex: 0 0 33.333%; /* 3 items per row default */
+    height: 40vh;
+    padding: 0 1vw; /* Gaps between items */
+    overflow: hidden; /* Changed from hidden to visible inside padding context if needed, but keeping container behavior */
+    box-sizing: border-box; /* Include padding in width */
+    background-color: transparent; /* Remove background from container, move to inner if needed */
+}
+
+
+
+.cheatsheets_track {
+    display: flex;
+    gap: 2vw; /* Use modern gap */
+    transition: transform 0.5s ease-in-out;
+}
+
+.cheatsheet_item {
+    position: relative;
+    flex: 0 0 calc((100% - 4vw) / 3); /* 3 items, 2 gaps */
+    height: 40vh;
     overflow: hidden;
     border: 1px solid #333;
     transition: all 0.3s ease;
-    background-color: #000; /* Pure black background */
+    background-color: #000;
 }
+
+.cheat_nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cheat_nav:hover {
+    background-color: white;
+    color: black;
+}
+
+.cheat_prev {
+    left: 0;
+}
+
+.cheat_next {
+    right: 0;
+}
+
 
 .cheatsheet_item:hover {
     border-color: white;
