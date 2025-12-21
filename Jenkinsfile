@@ -1,5 +1,14 @@
 pipeline {
     agent { label 'dockerlinux' }
+    
+    environment {
+        // GitHub Registry Configuration
+        REGISTRY = 'ghcr.io'
+        // GitHub Username and Repository Name
+        IMAGE_REPO = 'rheinmir/portfolio'
+        // Container Name for the running instance
+        CONTAINER_NAME = 'portfolio'
+    }
 
     triggers {
         githubPush()
@@ -11,15 +20,84 @@ pipeline {
                 sh 'git status'
             }
         }
-        stage('Build & Deploy') {
+        
+        stage('Login to GHCR') {
             steps {
-                sh """
-                docker stop portfolio || true
-                docker rm portfolio || true
-                docker rmi portfolio || true
-                docker build -t portfolio .
-                docker run -d --name portfolio -p 1050:80 portfolio
-                """
+                withCredentials([usernamePassword(credentialsId: 'github-registry-auth', passwordVariable: 'GH_TOKEN', usernameVariable: 'GH_USER')]) {
+                    sh 'echo "$GH_TOKEN" | docker login ghcr.io -u "$GH_USER" --password-stdin'
+                }
+            }
+        }
+
+        stage('Build & Push') {
+            steps {
+                script {
+                    def gitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+                    def fullImageName = "${REGISTRY}/${IMAGE_REPO}:${gitCommit}"
+                    def latestImageName = "${REGISTRY}/${IMAGE_REPO}:latest"
+                    
+                    echo "Checking remote image: ${fullImageName}"
+                    
+                    // Try to pull the image first to see if it exists remotely
+                    def pullStatus = sh(script: "docker pull ${fullImageName} || true", returnStdout: true).trim()
+                    
+                    if (pullStatus.contains("Image is up to date") || pullStatus.contains("Downloaded newer image")) {
+                         echo "Image ${fullImageName} exists remotely. Skipping build."
+                    } else {
+                        echo "Image not found remotely. Building..."
+                        sh "docker build -t ${fullImageName} ."
+                        sh "docker tag ${fullImageName} ${latestImageName}"
+                        
+                        echo "Pushing images..."
+                        sh "docker push ${fullImageName}"
+                        sh "docker push ${latestImageName}"
+                    }
+                }
+            }
+        }
+        
+        stage('Deploy') {
+            steps {
+                script {
+                     def gitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+                     def fullImageName = "${REGISTRY}/${IMAGE_REPO}:${gitCommit}"
+                     
+                     // Ensure we have the image locally (in case we skipped build)
+                     sh "docker pull ${fullImageName}"
+
+                     // Cleanup potential old container names
+                     echo "Cleaning up old container..."
+                     sh "docker stop ${CONTAINER_NAME} || true"
+                     sh "docker rm ${CONTAINER_NAME} || true"
+                     
+                     // Run new container
+                     echo "Starting new container..."
+                     // Hosting on port 1050 (Host) mapped to 80 (Container)
+                     sh """
+                     docker run -d --name ${CONTAINER_NAME} \
+                         --restart unless-stopped \
+                         -p 1050:80 \
+                         ${fullImageName}
+                     """
+                }
+            }
+        }
+
+        stage('Cleanup') {
+            steps {
+                script {
+                    echo "Cleaning up system..."
+                    def gitCommit = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+                    
+                    // Prune dangling images (images that are no longer tagged)
+                    sh "docker image prune -f || true"
+                    
+                    // Remove older images of this repository, excluding the current commit and 'latest'
+                    // This command matches images from the same repo, filters out the current commit tag and 'latest' tag, then removes them
+                    sh """
+                    docker images --format '{{.Repository}}:{{.Tag}}' | grep '${REGISTRY}/${IMAGE_REPO}' | grep -v '${gitCommit}' | grep -v 'latest' | xargs -r docker rmi || true
+                    """
+                }
             }
         }
     }
